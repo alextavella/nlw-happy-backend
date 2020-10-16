@@ -23,7 +23,7 @@ export default {
       relations: ["images"],
     });
 
-    return res.status(200).json(orphanage);
+    return res.status(200).json(orphanageView.render(orphanage));
   },
 
   async create(req: Request, res: Response) {
@@ -51,7 +51,7 @@ export default {
       about,
       instructions,
       opening_hours,
-      open_on_weekends,
+      open_on_weekends: open_on_weekends === "true",
       images,
     };
 
@@ -60,5 +60,15 @@ export default {
     await orphanagesRepository.save(orphanage);
 
     return res.status(201).json(orphanageView.render(orphanage));
+  },
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const orphanagesRepository = getRepository(Orphanage);
+
+    await orphanagesRepository.delete(id);
+
+    return res.status(200).send();
   },
 };

@@ -22,4 +22,6 @@ routes.post(
   OrphanageController.create
 );
 
+routes.delete("/orphanages/:id", OrphanageController.delete);
+
 export default routes;

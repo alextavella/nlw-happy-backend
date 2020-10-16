@@ -25,7 +25,7 @@ export default {
       about,
       instructions,
       opening_hours,
-      open_on_weekends,
+      open_on_weekends: open_on_weekends === "true",
       images,
     };
 
@@ -33,10 +33,12 @@ export default {
       name: Yup.string().required("Nome é obrigatório"),
       latitude: Yup.number().required("Latitude é obrigatório"),
       longitude: Yup.number().required("Longitude é obrigatório"),
-      about: Yup.string().max(600, "Sobre deve ter no máximo 600 caracteres"),
-      instructions: Yup.string(),
-      opening_hours: Yup.string(),
-      open_on_weekends: Yup.string(),
+      about: Yup.string()
+        .required("Sobre é obrigatório")
+        .max(600, "Sobre deve ter no máximo 600 caracteres"),
+      instructions: Yup.string().required("Instruções são obrigatórias"),
+      opening_hours: Yup.string().required("Este campo é obrigatório"),
+      open_on_weekends: Yup.string().required("Este campo é obrigatório"),
       images: Yup.array(
         Yup.object().shape({
           path: Yup.string().required(),
@@ -48,6 +50,6 @@ export default {
       abortEarly: false,
     });
 
-    next(data);
+    next();
   },
 };
