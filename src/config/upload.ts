@@ -1,10 +1,13 @@
-import multer from "multer";
-import path from "path";
+import multer from 'multer';
+import path from 'path';
+
+const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 
 export default {
-  baseUrl: process.env.BASE_URL || "http://localhost:3333",
+  tmpFolder: tmpFolder,
+  uploadsFolder: path.resolve(tmpFolder, 'uploads'),
   storage: multer.diskStorage({
-    destination: path.join(__dirname, "..", "..", "uploads"),
+    destination: path.join(__dirname, '..', '..', 'uploads'),
     filename: (request, file, cb) => {
       const fileName = `${Date.now()}-${file.originalname}`;
 
