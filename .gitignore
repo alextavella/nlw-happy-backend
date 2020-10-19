@@ -11,6 +11,4 @@ dist/
 .env
 .env.prod
 
-ormconfig.js
-
 !*/.gitkeep
