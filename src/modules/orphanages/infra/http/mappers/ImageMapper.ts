@@ -5,7 +5,7 @@ export default {
   render(image: Image) {
     return {
       id: image.id,
-      url: `${uploadConfig.uploadsFolder}/${image.path}`,
+      url: `${uploadConfig.uploadsView}/${image.path}`,
     };
   },
 
